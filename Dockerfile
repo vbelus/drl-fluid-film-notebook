@@ -35,7 +35,10 @@ RUN cd /root/drl_fluid_film_python3/gym-film/gym_film/envs/simulation_solver \
 
 # Copy the notebooks and images
 COPY open-me.ipynb .
-COPY Introduction-and-method-M1.ipynb Method-M2.ipynb Method-M3.ipynb img/ drl_fluid_film_python3/gym-film/
+COPY Introduction-and-method-M1.ipynb Method-M2.ipynb Method-M3.ipynb drl_fluid_film_python3/gym-film/
+RUN cd /root/drl_fluid_film_python3/gym-film/ \
+  && mkdir img/
+COPY img drl_fluid_film_python3/gym-film/img/
 
 # Make the jupyter open when running a container
 RUN echo "jupyter notebook --ip 0.0.0.0 --no-browser --allow-root" >> /root/.bashrc
