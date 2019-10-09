@@ -1,12 +1,14 @@
 FROM ubuntu:latest
 WORKDIR /root
-ENV DEBIAN_FRONTEND=noninteractive
+ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
   && apt-get install -y python3 python3-pip python3-tk libopenmpi-dev wget libsm6 libxext6 libxrender-dev jupyter
 
+ARG drl_dir=./drl-fluid-film/drl_fluid_film_python3
+
 RUN cd /root \
   && mkdir drl_fluid_film_python3/
-COPY ./drl_fluid_film_python3 drl_fluid_film_python3/
+COPY $drl_dir drl_fluid_film_python3/
 
 # Let's install the dependencies of the projects, they are in `setup.py`
 RUN cd drl_fluid_film_python3/gym-film \
@@ -30,6 +32,10 @@ RUN echo "export LD_LIBRARY_PATH=/usr/local/boost_1_67_0/bin.v2/libs/python/buil
 RUN cd /root/drl_fluid_film_python3/gym-film/gym_film/envs/simulation_solver \
   && make clean \
   && make
+
+# Copy the notebooks and images
+COPY open-me.ipynb .
+COPY Introduction-and-method-M1.ipynb Method-M2.ipynb Method-M3.ipynb img/ drl_fluid_film_python3/gym-film/
 
 # Make the jupyter open when running a container
 RUN echo "jupyter notebook --ip 0.0.0.0 --no-browser --allow-root" >> /root/.bashrc
