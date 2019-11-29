@@ -4,7 +4,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
   && apt-get install -y python3 python3-pip python3-tk libopenmpi-dev wget libsm6 libxext6 libxrender-dev jupyter
 
-ARG drl_dir=./drl-fluid-film/drl_fluid_film_python3
+ARG drl_dir=./falling-liquid-film-drl/drl_fluid_film_python3
 
 RUN cd /root \
   && mkdir drl_fluid_film_python3/
