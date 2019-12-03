@@ -3,7 +3,7 @@ This notebook uses code from this project : https://github.com/vbelus/falling-li
 
 Because of that, when cloning this repo, you have to use the `--recurse-submodules` flag to clone the main repo as well :
 ```bash
-git clone --recurse-submodules https://github.com/vbelus/drl-fluid-film-notebook/edit/master/README.md
+git clone --recurse-submodules https://github.com/vbelus/drl-fluid-film-notebook
 ```
 
 - ### For Ubuntu/Mac users :
